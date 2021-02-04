@@ -1,0 +1,25 @@
+#!/bin/bash
+
+AvailableDisplays=($(xrandr --listactivemonitors | awk '{ print $4 }'))
+Displays=()
+
+
+if [ "$1" == "" ] || [ "$1" == "all" ]
+then
+  brightness="0.4"
+else
+  brightness="$1"
+fi
+
+if [ "$1" == "" ] || [ "$2" == "" ] || [ "$2" == "all" ] || [ "$1" == "all" ]
+then
+    Displays=("${AvailableDisplays[@]}")
+else
+  Displays=${AvailableDisplays[$2]}
+fi
+
+for dis in "${Displays[@]}"
+do
+    xrandr --output "${dis}" --brightness "${brightness}"
+done
+

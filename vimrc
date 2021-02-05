@@ -3,6 +3,7 @@
 "Author: Andrew Pierson
 "==============================================================================
 
+
 " NOTE: Must be set *before* ALE is loaded to take effect.
 let g:ale_completion_enabled = 1
 

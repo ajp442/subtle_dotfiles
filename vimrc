@@ -3,6 +3,10 @@
 "Author: Andrew Pierson
 "==============================================================================
 
+" NOTE: Must be set *before* ALE is loaded to take effect.
+let g:ale_completion_enabled = 1
+
+
 "We do not wish to be compatible with vim.
 "We'll set it right away as it may affect other settings.
 "This is the most compelling reason I found to set this
@@ -52,8 +56,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 
 call plug#end()
-
-
 
 "------------------------------------------------------------------------------
 "Settings
@@ -266,7 +268,7 @@ let g:ale_fix_on_save = 1
 " \}
 "
 let g:ale_linters = {
-\   'python':   ['pydocstyle', 'pylint'],
+\   'python':   ['pyls'],
 \}
 
 " let g:ale_linters = {

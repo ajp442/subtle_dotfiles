@@ -52,6 +52,11 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+
+"https://github.com/dag/vim-fish
+" Fish shell script highlighting.
+Plug 'dag/vim-fish'
+
 "https://github.com/dense-analysis/ale
 "Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
@@ -253,6 +258,7 @@ autocmd BufNewFile,BufRead,BufReadPost *.qml set filetype=javascript
 
 let g:ale_fixers = {
 \   'python':   ['isort', 'black'],
+\   'sh':       ['shfmt'],
 \}
 
 " Set this variable to 1 to fix files when you save them.

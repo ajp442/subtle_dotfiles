@@ -29,3 +29,7 @@ abbr setclip "xclip -selection c"
 abbr getclip "xclip -selection c -o"
 
 fish_vi_key_bindings
+
+source ~/.config/gitlint/gitlintrc.fish
+
+set fish_prompt_pwd_dir_length 0

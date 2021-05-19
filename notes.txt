@@ -1,0 +1,26 @@
+# Fish plugin manager.
+https://github.com/jorgebucaran/fisher
+
+# fzf plugin for fish
+https://github.com/jethrokuan/fzf
+
+# Enable "out-f-the-box" FZF fish keybindings
+/usr/share/doc/fzf/README.Debian
+
+# fish config file location
+~/.config/fish/config.fish
+
+
+#To make fish your default shell:
+#Add the line /usr/local/bin/fish to /etc/shells
+echo /usr/local/bin/fish | sudo tee -a /etc/shells
+#Change your default shell with 
+chsh -s /usr/local/bin/fish
+
+ln -s ~/swdev/subtle_dotfiles/vimrc ~/.vim/vimrc
+
+ln -s ~/swdev/subtle_dotfiles/config.fish ~/.config/fish/config.fish
+
+ln -s ~/swdev/subtle_dotfiles/tmux.conf ~/.tmux.conf
+
+ln -s ~/swdev/subtle_dotfiles/gitconfig ~/.gitconfig

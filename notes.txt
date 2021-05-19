@@ -24,3 +24,5 @@ ln -s ~/swdev/subtle_dotfiles/config.fish ~/.config/fish/config.fish
 ln -s ~/swdev/subtle_dotfiles/tmux.conf ~/.tmux.conf
 
 ln -s ~/swdev/subtle_dotfiles/gitconfig ~/.gitconfig
+
+ln -s ~/swdev/subtle_dotfiles/gitconfig-work ~/.gitconfig-work

@@ -1,0 +1,150 @@
+From 57bc613c06b49df7e32493d37084bc4bf830d33e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Maxime=20Roussin-B=C3=A9langer?=
+ <maxime.roussinbelanger@gmail.com>
+Date: Sun, 7 Mar 2021 14:33:54 -0500
+Subject: [PATCH] Fix msg-filename kept open after edition
+
+--msg-filename type is now a Path and not a managed click.File.
+This makes it easier to control the opening and closing of the file.
+
+Context manager will make sure that the file we use will be refreshed after
+edition.
+---
+ gitlint/cli.py                                | 12 +++---
+ gitlint/tests/cli/test_cli_hooks.py           | 40 +++++++++++++++++++
+ .../test_cli_hooks/test_hook_edit_2_stderr    |  3 ++
+ .../test_cli_hooks/test_hook_edit_2_stdout    |  5 +++
+ 4 files changed, 55 insertions(+), 5 deletions(-)
+ create mode 100644 gitlint/tests/expected/cli/test_cli_hooks/test_hook_edit_2_stderr
+ create mode 100644 gitlint/tests/expected/cli/test_cli_hooks/test_hook_edit_2_stdout
+
+diff --git a/gitlint/cli.py b/gitlint/cli.py
+index 9b16d47..6ccd3a1 100644
+--- a/gitlint/cli.py
++++ b/gitlint/cli.py
+@@ -3,6 +3,7 @@
+ import copy
+ import logging
+ import os
++import pathlib
+ import platform
+ import stat
+ import sys
+@@ -152,7 +153,8 @@ def build_git_context(lint_config, msg_filename, refspec):
+     # 1. Any data specified via --msg-filename
+     if msg_filename:
+         LOG.debug("Using --msg-filename.")
+-        return from_commit_msg(str(msg_filename.read()))
++        with msg_filename.open() as msg_file:
++            return from_commit_msg(str(msg_file.read()))
+ 
+     # 2. Any data sent to stdin (unless stdin is being ignored)
+     if not lint_config.ignore_stdin:
+@@ -191,7 +193,7 @@ def __init__(self, config, config_builder, refspec, msg_filename, gitcontext=Non
+         self.config = config
+         self.config_builder = config_builder
+         self.refspec = refspec
+-        self.msg_filename = msg_filename
++        self.msg_filename = pathlib.Path(msg_filename) if msg_filename else None
+         self.gitcontext = gitcontext
+ 
+ 
+@@ -212,7 +214,8 @@ def __init__(self, config, config_builder, refspec, msg_filename, gitcontext=Non
+ @click.option('--ignore', envvar='GITLINT_IGNORE', default="", help="Ignore rules (comma-separated by id or name).")
+ @click.option('--contrib', envvar='GITLINT_CONTRIB', default="",
+               help="Contrib rules to enable (comma-separated by id or name).")
+-@click.option('--msg-filename', type=click.File(), help="Path to a file containing a commit-msg.")
++@click.option('--msg-filename', type=click.Path(exists=True, dir_okay=False),
++              help="Path to a file containing a commit-msg.")
+ @click.option('--ignore-stdin', envvar='GITLINT_IGNORE_STDIN', is_flag=True,
+               help="Ignore any stdin data. Useful for running in CI server.")
+ @click.option('--staged', envvar='GITLINT_STAGED', is_flag=True,
+@@ -392,9 +395,8 @@ def run_hook(ctx):
+                 LOG.debug("run-hook: editing commit message")
+                 msg_filename = ctx.obj.msg_filename
+                 if msg_filename:
+-                    msg_filename.seek(0)
+                     editor = os.environ.get("EDITOR", DEFAULT_COMMIT_MSG_EDITOR)
+-                    msg_filename_path = os.path.realpath(msg_filename.name)
++                    msg_filename_path = str(msg_filename.resolve())
+                     LOG.debug("run-hook: %s %s", editor, msg_filename_path)
+                     shell(editor + " " + msg_filename_path)
+                 else:
+diff --git a/gitlint/tests/cli/test_cli_hooks.py b/gitlint/tests/cli/test_cli_hooks.py
+index 825345f..264fa86 100644
+--- a/gitlint/tests/cli/test_cli_hooks.py
++++ b/gitlint/tests/cli/test_cli_hooks.py
+@@ -17,6 +17,13 @@
+ from gitlint.utils import DEFAULT_ENCODING
+ 
+ 
++def edit_commit(args, commit_message):
++    cli = args.split(' ')
++    filepath = cli[-1]
++    with open(filepath, "w") as msg_filename:
++        msg_filename.write(commit_message)
++
++
+ class CLIHookTests(BaseTestCase):
+     USAGE_ERROR_CODE = 253
+     GIT_CONTEXT_ERROR_CODE = 254
+@@ -154,6 +161,39 @@ def test_run_hook_edit(self, shell):
+                         self.assert_log_contains("DEBUG: gitlint.cli run-hook: editing commit message")
+                         self.assert_log_contains(f"DEBUG: gitlint.cli run-hook: {expected_editors[i]} {msg_filename}")
+ 
++    def test_run_hook_edit_fail_first_edit_success(self):
++        """ Test for run-hook subcommand, answering 'e(dit)' after commit-hook """
++
++        expected_editor = "vim -n"
++        bad_commit_message = "WIP: höok edit 1."
++        corrected_commit_message = "höok edit 1\n\nAdd a long enough body\n"
++        os.environ['EDITOR'] = expected_editor
++
++        def edit_commit_partial(cli):
++            return edit_commit(cli, corrected_commit_message)
++
++        with patch('gitlint.cli.shell', side_effect=edit_commit_partial) as shell:
++            with self.patch_input(['e']):
++                with self.tempdir() as tmpdir:
++                    msg_filename = os.path.realpath(os.path.join(tmpdir, "hür"))
++                    with io.open(msg_filename, 'w', encoding=DEFAULT_ENCODING) as f:
++                        f.write(bad_commit_message + "\n")
++
++                    with patch('gitlint.display.stderr', new=StringIO()) as stderr:
++                        result = self.cli.invoke(cli.cli, ["--msg-filename", msg_filename, "run-hook"])
++                        self.assertEqual(result.output, self.get_expected('cli/test_cli_hooks/test_hook_edit_2_stdout',
++                                                                          {"commit_msg": corrected_commit_message}))
++                        expected = self.get_expected("cli/test_cli_hooks/test_hook_edit_2_stderr",
++                                                     {"commit_msg": bad_commit_message})
++                        self.assertEqual(stderr.getvalue(), expected)
++
++                        # exit code = number of violations, no more violations
++                        self.assertEqual(result.exit_code, 0)
++
++                        shell.assert_called_with(expected_editor + " " + msg_filename)
++                        self.assert_log_contains("DEBUG: gitlint.cli run-hook: editing commit message")
++                        self.assert_log_contains(f"DEBUG: gitlint.cli run-hook: {expected_editor} {msg_filename}")
++
+     def test_run_hook_no(self):
+         """ Test for run-hook subcommand, answering 'n(o)' after commit-hook """
+ 
+diff --git a/gitlint/tests/expected/cli/test_cli_hooks/test_hook_edit_2_stderr b/gitlint/tests/expected/cli/test_cli_hooks/test_hook_edit_2_stderr
+new file mode 100644
+index 0000000..d57bd68
+--- /dev/null
++++ b/gitlint/tests/expected/cli/test_cli_hooks/test_hook_edit_2_stderr
+@@ -0,0 +1,3 @@
++1: T3 Title has trailing punctuation (.): "{commit_msg}"
++1: T5 Title contains the word 'WIP' (case-insensitive): "{commit_msg}"
++3: B6 Body message is missing
+diff --git a/gitlint/tests/expected/cli/test_cli_hooks/test_hook_edit_2_stdout b/gitlint/tests/expected/cli/test_cli_hooks/test_hook_edit_2_stdout
+new file mode 100644
+index 0000000..ff96b53
+--- /dev/null
++++ b/gitlint/tests/expected/cli/test_cli_hooks/test_hook_edit_2_stdout
+@@ -0,0 +1,5 @@
++gitlint: checking commit message...
++-----------------------------------------------
++gitlint: Your commit message contains violations.
++Continue with commit anyways (this keeps the current commit message)? [y(es)/n(no)/e(dit)] gitlint: checking commit message...
++gitlint: OK (no violations in commit message)

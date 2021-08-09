@@ -61,6 +61,9 @@ Plug 'dag/vim-fish'
 "Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
 
+"https://github.com/dhruvasagar/vim-table-mode
+Plug 'dhruvasagar/vim-table-mode'
+
 call plug#end()
 
 "------------------------------------------------------------------------------
@@ -87,13 +90,13 @@ set showmode
 
 "Change those peskey tabs to spaces
 "If you ever want a real tab character use Ctrl-V<tab> key sequence
-set expandtab
+"set expandtab
 
 "Of course many applications us 4 spaces for a tab
-set tabstop=4
+"set tabstop=4
 
 "Indent by 4 spaces when using >>, <<, ==, ect.
-set shiftwidth=4
+"set shiftwidth=4
 
 "highlight all matching phrases
 set hlsearch

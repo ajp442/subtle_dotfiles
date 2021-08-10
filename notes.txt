@@ -32,3 +32,38 @@ ln -s ~/repos/subtle_dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/repos/subtle_dotfiles/gitconfig ~/.gitconfig
 ln -s ~/repos/subtle_dotfiles/gitconfig-work ~/.gitconfig-work
 ln -s ~/repos/subtle_dotfiles/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
+
+
+#==============================================================================
+# Gitlint setup
+#==============================================================================
+
+[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ mkdir -p ~/.config/gitlint
+[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ cp ~/swdev/ci_gitlint/gitlint/.gitlint ~/.config/gitlint/gitlint.ini
+[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ #cp ~/swdev/ci_gitlint/gitlint/rules/body_max_line_length_with_exceptions.py ~/.config/gitlint/gitlint-rules
+[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ mkdir ~/.config/gitlint/gitlint-rules
+[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ cp ~/swdev/ci_gitlint/gitlint/rules/body_max_line_length_with_exceptions.py ~/.config/gitlint/gitlint-rules
+[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ cp ~/swdev/ci_gitlint/gitlint/rules/title_imperative_mood.py ~/.config/gitlint/gitlint-rules
+[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ cp ~/swdev/subtle_dotfiles/gitlintrc.fish ~/.config/gitlint/gitlintrc.fish
+
+https://stackoverflow.com/questions/21903805/how-to-download-a-single-commit-diff-from-github
+Go to the commit you want to use as a patch, and at `.patch` to the end of the url.
+
+https://github.com/jorisroovers/gitlint/commit/57bc613c06b49df7e32493d37084bc4bf830d33e.patch
+Save as gitlint_msgfile_kept_after_edit.patch
+
+https://github.com/jorisroovers/gitlint/commit/02c0226133d9fe103bbb5bdec70fc17094c55fb3.patch
+Save as GITLINT_CONFIG_env_var.patch
+
+git am ~/swdev/subtle_dotfiles/GITLINT_CONFIG_env_var.patch
+git am ~/swdev/subtle_dotfiles/gitlint_msgfile_kept_after_edit.patch
+
+git clone https://github.com/jorisroovers/gitlint.git
+
+pip3 install -e .
+
+gitlint install-hook
+
+source ~/.config/gitlint/gitlintrc.fish
+
+needs to be added to ~/.config/fish/config.fish

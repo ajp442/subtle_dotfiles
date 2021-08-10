@@ -19,21 +19,16 @@ chsh -s /usr/local/bin/fish
 
 # apply gitlint patches
 cd ~/swdev/gitlint
-git am ~/swdev/subtle_dotfiles/gitlint_msgfile_kept_after_edit.patch
-git am ~/swdev/subtle_dotfiles/GITLINT_CONFIG_env_var.patch
+git am ~/repos/subtle_dotfiles/gitlint_msgfile_kept_after_edit.patch
+git am ~/repos/subtle_dotfiles/GITLINT_CONFIG_env_var.patch
 
 # pip install this patched version of gitlint
 cd ~/swdev/gitlint
 pip install -e .
 
-ln -s ~/swdev/subtle_dotfiles/vimrc ~/.vim/vimrc
-
-ln -s ~/swdev/subtle_dotfiles/config.fish ~/.config/fish/config.fish
-
-ln -s ~/swdev/subtle_dotfiles/tmux.conf ~/.tmux.conf
-
-ln -s ~/swdev/subtle_dotfiles/gitconfig ~/.gitconfig
-
-ln -s ~/swdev/subtle_dotfiles/gitconfig-work ~/.gitconfig-work
-
-ln -s ~/swdev/subtle_dotfiles/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
+ln -s ~/repos/subtle_dotfiles/vimrc ~/.vim/vimrc
+ln -s ~/repos/subtle_dotfiles/config.fish ~/.config/fish/config.fish
+ln -s ~/repos/subtle_dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/repos/subtle_dotfiles/gitconfig ~/.gitconfig
+ln -s ~/repos/subtle_dotfiles/gitconfig-work ~/.gitconfig-work
+ln -s ~/repos/subtle_dotfiles/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish

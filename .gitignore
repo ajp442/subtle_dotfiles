@@ -1,0 +1,6 @@
+# latex artifacts
+*.aux
+*.log
+*.out
+*.pdf
+

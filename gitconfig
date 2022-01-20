@@ -11,15 +11,25 @@
     excludesFile = ~/.gitignore
 [interactive]
     diffFilter = delta --color-only
+[include]
+    path = /home/ajp/repos/delta/themes.gitconfig
 [delta]
-    line-numbers = true
-    syntax-theme = base16
+    ; --- Dark themes ---
+    ; features = collared-trogon
+    ; features = tangara-chilensis
+    ; features = villsau
+    features = woolly-mammoth ; favorite so far
+    ; features = calochortus-lyallii ; good as well
+    ; features = mantis-shrimp
+    ; --- Light themes ---
+    ; features = coracias-caudatus
+    ; features = hoopoe
     side-by-side = true
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
-    hunk-header-decoration-style = yellow box
+; [delta "decorations"]
+;     commit-decoration-style = bold yellow box ul
+;     file-style = bold yellow ul
+;     file-decoration-style = none
+;     hunk-header-decoration-style = yellow box
 [commit]
     # commit -v by default
     verbose = true

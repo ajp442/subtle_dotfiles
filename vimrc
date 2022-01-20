@@ -37,6 +37,10 @@ Plug 'tpope/vim-commentary'
 "https://github.com/ericcurtin/CurtineIncSw.vim
 Plug 'ericcurtin/CurtineIncSw.vim'
 
+"Preview markdown.
+"https://github.com/iamcco/markdown-preview.nvim
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
 
 "maybe keep
 "https://github.com/davidhalter/jedi-vim
@@ -262,6 +266,7 @@ autocmd BufNewFile,BufRead,BufReadPost *.qml set filetype=javascript
 let g:ale_fixers = {
 \   'python':   ['isort', 'black'],
 \   'sh':       ['shfmt'],
+\   'xml':      ['xmllint'],
 \}
 
 " Set this variable to 1 to fix files when you save them.

@@ -41,6 +41,10 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 "https://github.com/iamcco/markdown-preview.nvim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+" https://github.com/xuhdev/vim-latex-live-preview
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
 
 "maybe keep
 "https://github.com/davidhalter/jedi-vim

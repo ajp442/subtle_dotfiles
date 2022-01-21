@@ -174,41 +174,19 @@
 %----------------------------------------------------------------------------------------
 
 % Command to create the rounded boxes around the first three letters of section titles
-\newcommand*\round[2]{%
-	\tikz[baseline=(char.base)]\node[anchor=north west, draw,rectangle, rounded corners, inner sep=1.6pt, minimum size=5.5mm, text height=3.6mm, fill=#2,#2,text=white](char){#1};%
-}
-
-\newcounter{colorCounter}
-\newcommand{\sectioncolor}[1]{%
-	{%
-		\round{#1}{
-			\ifcase\value{colorCounter}%
-			maingray\or%
-			mainblue\or%
-			maingray\or%
-			mainblue\or%
-			maingray\or%
-			mainblue\or%
-			maingray\or%
-			mainblue\or%
- 			maingray\or%
-			mainblue\else%
-			maingray\fi%
-		}%
-	}%
-	\stepcounter{colorCounter}%
+\newcommand*\round[1]{%
+	\tikz[baseline=(char.base)]\node[rectangle, rounded corners, fill=mainblue, text=white](char){#1};%
 }
 
 \renewcommand{\section}[1]{
-	{%
-		\color{gray}%
-		\Large\sectioncolor{#1}%
+	{
+		\Large\round{#1}
 	}
 }
 
-\renewcommand{\subsection}[1]{
+\renewcommand{\subsection}[2]{
 	\par\vspace{.5\parskip}{%
-		\large\color{gray} #1%
+		\large\color{gray} #1 \color{black} #2
 	}
 	\par\vspace{.25\parskip}%
 }

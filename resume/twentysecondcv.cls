@@ -103,6 +103,7 @@
 	}
 }
 
+
 %----------------------------------------------------------------------------------------
 %	 SIDEBAR LAYOUT
 %----------------------------------------------------------------------------------------
@@ -185,51 +186,46 @@
 }
 
 \renewcommand{\subsection}[2]{
-	\par\vspace{.5\parskip}{%
-		\large\color{gray} #1 \color{black} #2
+	\par%\vspace{.5\parskip}
+	{
+		\large\color{maingray}#1\dotfill\textbf{\color{mainblue}#2}
 	}
 	\par\vspace{.25\parskip}%
 }
 
 %----------------------------------------------------------------------------------------
+%	 TIMELINE TEST
+%----------------------------------------------------------------------------------------
+\usepackage[usestackEOL]{stackengine}
+\usepackage{graphicx}
+\newcommand\rb[1]{\raisebox{-1.5pt}{%
+  \stackunder[-2pt]{%
+    \stackon[0pt]{%
+      \stackinset{c}{}{c}{.35pt}{$\bullet$}{\scalebox{2}{$\circ$}}%
+    }{%
+      \smash{\rule{1pt}{2.1ex}}\kern.5pt}%
+  }{%
+    \smash{\rule[\dimexpr-#1\baselineskip+1.8ex\relax]{1pt}{%
+      \dimexpr#1\baselineskip-1.8ex\relax}}\kern.5pt}%
+  }%
+}
+\let\svitem\item
+\def\rbsetup{\renewcommand\item[1][1]{\svitem[\rb{##1}]}}
+\newenvironment{rbitemize}{\itemize\rbsetup}{\enditemize}
+
+%----------------------------------------------------------------------------------------
 %	 LONG LIST ENVIRONMENT
 %----------------------------------------------------------------------------------------
 
-\setlength{\tabcolsep}{0pt}
-
-% New environment for the long list
-\newenvironment{twenty}{%
-	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
-}{%
-	\end{tabular*}
-}
-
-\newcommand{\twentyitem}[4]{%
-	#1&\parbox[t]{0.83\textwidth}{%
-		\textbf{#2}%
-		\hfill%
-		{\footnotesize#3}\\%
-		#4\vspace{\parsep}%
-	}\\
-}
-
-%----------------------------------------------------------------------------------------
-%	 SMALL LIST ENVIRONMENT
-%----------------------------------------------------------------------------------------
-
-\setlength{\tabcolsep}{0pt}
-
-% New environment for the small list
-\newenvironment{twentyshort}{%
-	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
-}{%
-	\end{tabular*}
-}
-
-\newcommand{\twentyitemshort}[2]{%
-	#1&\parbox[t]{0.83\textwidth}{%
-		\textbf{#2}%
-	}\\
+\newcommand{\twentyitem}[3]{
+	{\color{maingray}#1}\hfill\textbf{\color{mainblue}#2}\\
+	\newlength{\pad}
+	\setlength{\pad}{1em}
+	\newlength{\parwidth}
+	\setlength{\parwidth}{\dimexpr\textwidth-\dimexpr\pad}
+	\hspace*{\pad}\parbox[t]{\parwidth}{
+		#3\\
+	}
 }
 
 %----------------------------------------------------------------------------------------

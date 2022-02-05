@@ -196,37 +196,42 @@
 %----------------------------------------------------------------------------------------
 %	 TIMELINE TEST
 %----------------------------------------------------------------------------------------
-\usepackage[usestackEOL]{stackengine}
-\usepackage{graphicx}
-\newcommand\rb[1]{\raisebox{-1.5pt}{%
-  \stackunder[-2pt]{%
-    \stackon[0pt]{%
-      \stackinset{c}{}{c}{.35pt}{$\bullet$}{\scalebox{2}{$\circ$}}%
-    }{%
-      \smash{\rule{1pt}{2.1ex}}\kern.5pt}%
-  }{%
-    \smash{\rule[\dimexpr-#1\baselineskip+1.8ex\relax]{1pt}{%
-      \dimexpr#1\baselineskip-1.8ex\relax}}\kern.5pt}%
-  }%
-}
-\let\svitem\item
-\def\rbsetup{\renewcommand\item[1][1]{\svitem[\rb{##1}]}}
-\newenvironment{rbitemize}{\itemize\rbsetup}{\enditemize}
+%\usepackage[usestackEOL]{stackengine}
+%\usepackage{graphicx}
+%\newcommand\rb[1]{\raisebox{-1.5pt}{%
+%  \stackunder[-2pt]{%
+%    \stackon[0pt]{%
+%      \stackinset{c}{}{c}{.35pt}{$\bullet$}{\scalebox{2}{$\circ$}}%
+%    }{%
+%      \smash{\rule{1pt}{2.1ex}}\kern.5pt}%
+%  }{%
+%    \smash{\rule[\dimexpr-#1\baselineskip+1.8ex\relax]{1pt}{%
+%      \dimexpr#1\baselineskip-1.8ex\relax}}\kern.5pt}%
+%  }%
+%}
+%\let\svitem\item
+%\def\rbsetup{\renewcommand\item[1][1]{\svitem[\rb{##1}]}}
+%\newenvironment{rbitemize}{\itemize\rbsetup}{\enditemize}
 
 %----------------------------------------------------------------------------------------
 %	 LONG LIST ENVIRONMENT
 %----------------------------------------------------------------------------------------
 
+\newlength{\ajppad}
+\newlength{\ajpparwidth}
+
+\usepackage{changepage}
 \newcommand{\twentyitem}[3]{
 	{\color{maingray}#1}\hfill\textbf{\color{mainblue}#2}\\
-	\newlength{\pad}
-	\setlength{\pad}{1em}
-	\newlength{\parwidth}
-	\setlength{\parwidth}{\dimexpr\textwidth-\dimexpr\pad}
-	\hspace*{\pad}\parbox[t]{\parwidth}{
-		#3\\
-	}
+	\hfill\begin{minipage}{\dimexpr\textwidth}
+	\setlength{\leftskip}{1em}
+	#3
+
+	\xdef\tpd{\the\prevdepth}
+	\end{minipage}
+	\par\vspace{.25\parskip}%
 }
+
 
 %----------------------------------------------------------------------------------------
 %	 MARGINS AND LINKS

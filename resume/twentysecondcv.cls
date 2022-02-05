@@ -185,10 +185,11 @@
 	}
 }
 
-\renewcommand{\subsection}[2]{
+\renewcommand{\subsection}[3][]{
 	\par%\vspace{.5\parskip}
 	{
-		\large\color{maingray}#1\dotfill\textbf{\color{mainblue}#2}
+		\Large\color{mainblue}{#3} \hfill\large\color{gray}{#1}\hfill\textbf{\color{maingray}\Large{#2}}
+		\hrule{}
 	}
 	\par\vspace{.25\parskip}%
 }
@@ -221,8 +222,13 @@
 \newlength{\ajpparwidth}
 
 \usepackage{changepage}
+%\usepackage{mdframed}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{tcolorbox}
 \newcommand{\twentyitem}[3]{
-	{\color{maingray}#1}\hfill\textbf{\color{mainblue}#2}\\
+	%{\color{maingray}#1}\hfill\textbf{\color{mainblue}#2}\\
+	{\color{mainblue}#2}\hfill\textbf{\color{maingray}#1}\\
+	%{\color{maingray}#1} - \textbf{\color{mainblue}#2}\\
 	\hfill\begin{minipage}{\dimexpr\textwidth}
 	\setlength{\leftskip}{1em}
 	#3

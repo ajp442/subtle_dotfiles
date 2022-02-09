@@ -45,6 +45,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 " https://github.com/xuhdev/vim-latex-live-preview
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
+" A Vim Plugin for latex
+Plug 'lervag/vimtex'
+
 
 "maybe keep
 "https://github.com/davidhalter/jedi-vim
@@ -236,6 +239,7 @@ augroup END
 
 
 "------------------------------------------------------------------------------
+"
 "Spell checking, auto-completion, thesaurus lookup etc..
 "------------------------------------------------------------------------------
 "

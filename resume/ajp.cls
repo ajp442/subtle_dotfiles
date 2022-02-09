@@ -43,7 +43,7 @@
 %	 MISC CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\renewcommand{\bfseries}{\color{gray}} % Make \textbf produce coloured text instead
+%\renewcommand{\bfseries}{\color{gray}} % Make \textbf produce coloured text instead
 
 \pagestyle{empty} % Disable headers and footers
 
@@ -199,7 +199,7 @@
 \renewcommand{\subsection}[3][]{%
 	\par%\vspace{.5\parskip}
 	{%
-		\Large\color{mainblue}{#3} \hfill\large\color{gray}{#1}\hfill\textbf{\color{maingray}\Large{#2}}
+		\Large\color{mainblue}{#3} \hfill\large\color{gray}{#1}\hfill\color{maingray}\Large{#2}
 		\hrule{}
 	}
 	\par\vspace{.25\parskip}%
@@ -219,7 +219,7 @@
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{tcolorbox}
 \newcommand{\twentyitem}[3]{%
-	{\color{mainblue}#2}\hfill\textbf{\color{maingray}#1}\\
+	{\color{mainblue}#2}\hfill{\color{maingray}#1}\\
 	\hfill\begin{minipage}{\dimexpr\textwidth}
 	\setlength{\leftskip}{1em}
 	#3

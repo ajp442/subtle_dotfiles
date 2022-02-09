@@ -23,7 +23,7 @@
 %\usepackage{tcolorbox}
 %\usepackage{mdframed}
 
-\documentclass[letterpaper]{twentysecondcv} % a4paper for A4
+\documentclass[letterpaper]{ajp} % a4paper for A4
 
 %----------------------------------------------------------------------------------------
 %	 PERSONAL INFORMATION
@@ -46,6 +46,8 @@
 
 \begin{document}
 
+\addtolength{\topmargin}{-.4cm}
+
 %----------------------------------------------------------------------------------------
 %	 ABOUT ME
 %----------------------------------------------------------------------------------------
@@ -62,9 +64,64 @@
 
 
 %----------------------------------------------------------------------------------------
+\mdfdefinestyle{MyFrame}{%
+    linecolor=mainblue,
+    outerlinewidth=2pt,
+    roundcorner=10pt
+}%
 
 %\makeprofile% Print the sidebar
 
+	% \begin{tikzpicture}[remember picture,overlay]
+   		% \node [rectangle, fill=sidecolor, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (3.2cm,0.5cm){};
+	% \end{tikzpicture}
+%\thispagestyle{empty}
+% \begin{tikzpicture}[remember picture,overlay]
+% \fill[fill=sidecolor] ($(current page.north west)+(0.0cm,-0.0cm)$) rectangle  ($(current page.north east)+(-0.0cm,-3.8cm)$) ;
+% \end{tikzpicture}
+
+\definecolor{left} {HTML}{001528}
+  \begin{tikzpicture}[remember picture,overlay]
+    \node [rectangle, top color=maingray, bottom color=white, anchor=north, minimum width=\paperwidth, minimum height=8.5cm] (box) at ($(current page.north)+(0mm, 1mm)$){};
+    % % manual 181
+    % \node [rectangle, fill=left!30!white, postaction={path fading=north, fading angle=-45, fill=left}, anchor=north, below=10mm of box, minimum width=\paperwidth, minimum height=5.5cm] (box1) {};
+    % \begin{scope}
+    %   \clip (box1.south west) +(0,-10mm) coordinate (c1) rectangle +(\paperwidth,-150mm) coordinate (c2);
+    %   \node [inner color=left!30!white, outer color=left, circle through={(c1 |- c2)}] at (c1 -| c2) {};
+    % \end{scope}
+  \end{tikzpicture}
+
+			%\begin{center}
+			%\end{center}
+
+\begin{minipage}[t]{\textwidth}
+
+%\parbox[t][][t]{10cm}{Test one two three four five six seven eight nine ten eleven}
+%\centering
+%Test one two three four five six seven eight nine ten eleven
+\parbox{10cm}{%
+	\center{%
+		{\Huge\color{mainblue}\cvname}\\[10pt]
+		{\Large\color{black!80}\cvjobtitle}
+	}
+}
+\hfill{}
+%\begin{wrapfigure}{r}{}
+% \begin{wrapfigure}{r}{0cm}
+%   \centering
+	\begin{tikzpicture}[x=\imagescale,y=-\imagescale, baseline=8mm]
+		\clip [draw](-70, -110) circle (200);
+		\node[anchor=center] at (0,0) {\includegraphics[width=\imagewidth]{\profilepic}};
+	\end{tikzpicture}
+% \end{wrapfigure}
+%\end{wrapfigure}
+%Test one two three four five six seven eight nine ten eleven
+%\vspace{4.0cm}
+\end{minipage}
+
+% \begin{mdframed}[style=myframe]
+% \vspace{4.0cm}
+% \end{mdframed}
 
 
 
@@ -72,19 +129,9 @@
 % WORK EXPERIENCE
 %----------------------------------------------------------------------------------------
 
-\section{Work Experience}
-\mdfdefinestyle{MyFrame}{%
-    linecolor=mainblue,
-    outerlinewidth=2pt,
-    roundcorner=10pt
-}
-% ,
-%     innertopmargin=\baselineskip,
-%     innerbottommargin=\baselineskip,
-%     innerrightmargin=20pt,
-%     innerleftmargin=20pt,
-%     backgroundcolor=gray!50!white}
+%\section{Work Experience}
 
+\begin{multicols}{2}
 %\begin{tcolorbox}
 \begin{mdframed}[style=MyFrame]
 \subsection[Sr.\ Software Engineer]{2014--Present}{Raven Industries}
@@ -99,29 +146,41 @@
 \end{mdframed}
 %\end{tcolorbox}
 
+\vspace{8pt}
+\begin{mdframed}[style=MyFrame]
 \subsection[Q.A.\ \& software engineer Intern]{2012}{DocuTap}
 	\twentyitem{2012}{QA \& Track and Analyse Revenue}{Used PROGRESS and SQL while working with the accounting department to build an application used to track and analyze revenue. Used JavaScript to write automated test scripts for running regression tests on EMR (Electronic Medical Record) software. Refactored Pearl scripts to improve runtime performance on periodic search for backups. Found and removed memory leaks.}
-%\end{rbitemize}
+\end{mdframed}
 
 
 %----------------------------------------------------------------------------------------
 %	 EDUCATION
 %----------------------------------------------------------------------------------------
-\section{Education}
+%\section{Education}
+\vspace{8pt}
+\begin{mdframed}[style=MyFrame]
+\subsection{}{Education}
 
 	\twentyitem{2011--2014}{SDSM\&T}{Computer Science. B.S. Cum Laude}
+\end{mdframed}
 
 
 %----------------------------------------------------------------------------------------
 %	 OTHER EXPERIENCE
 %----------------------------------------------------------------------------------------
-\section{Other Experience}
+%\section{Other Experience}
+\vspace{8pt}
+\begin{mdframed}[style=MyFrame]
 \subsection{2012}{Boy Scouts of America}
 	\twentyitem{2010}{Eagle Scout}{Through the scouting program I gained valuable leadership, teamwork, public speaking, and first aid experience along with meaningful set of values around service.}
+\end{mdframed}
+\vspace{8pt}
+\begin{mdframed}[style=MyFrame]
 \subsection{}{Ham Radio}
 	\twentyitem{2014}{Ham Radio License}{Hit me up anytime for a good \rq{}ol Rag Chew on the air waves. I'm honestly not an avid ham radio user, I got the license with the thought that it would be useful for RC and robotics projects.}
 %\subsection{2014}{Robbinsdale Spanish Immersion School}
 	\twentyitem{1234--1234}{Bilingual}{I am bilingual, but haven't used my Spanish for many years, so I am quite rusty.}
+\end{mdframed}
 
 
 %----------------------------------------------------------------------------------------
@@ -146,4 +205,5 @@
 
 %----------------------------------------------------------------------------------------
 
+\end{multicols}
 \end{document} 

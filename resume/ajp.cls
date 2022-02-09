@@ -1,4 +1,4 @@
-\ProvidesClass{twentysecondcv}[2017/01/08 CV class]
+\ProvidesClass{ajp}[2022/02/08 CV class]
 \LoadClass{article}
 \NeedsTeXFormat{LaTeX2e}
 
@@ -19,6 +19,11 @@
 \RequirePackage{marvosym}
 \RequirePackage{parskip}
 \usepackage{fontawesome}
+\usepackage{tikz}
+\usepackage{wrapfig}
+%\usepackage{geometry}
+\usetikzlibrary{positioning,calc}
+\usetikzlibrary{positioning,fadings,through}
 
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -48,7 +53,7 @@
 %	 SIDEBAR DEFINITIONS
 %----------------------------------------------------------------------------------------
 
-\setlength{\TPHorizModule}{1cm} % Left margin
+%\setlength{\TPHorizModule}{1cm} % Left margin
 
 \newlength\imagewidth{}
 \newlength\imagescale{}
@@ -229,7 +234,8 @@
 %	 MARGINS AND LINKS
 %----------------------------------------------------------------------------------------
 
-%\RequirePackage[left=0.1cm,top=0.1cm,right=0.1cm,bottom=0.1cm,nohead,nofoot]{geometry}
-\RequirePackage[left=7.6cm,top=0.1cm,right=1cm,bottom=0.2cm,nohead,nofoot]{geometry} 
+%\RequirePackage[left=0.1cm,top=0.0cm,right=0.1cm,bottom=0.1cm,nohead,nofoot]{geometry}
+\RequirePackage[left=\tabcolsep,top=0.0cm,right=\tabcolsep,bottom=0.1cm,nohead,nofoot]{geometry}
+%\RequirePackage[left=7.6cm,top=0.1cm,right=1cm,bottom=0.2cm,nohead,nofoot]{geometry} 
 
 \RequirePackage{hyperref}

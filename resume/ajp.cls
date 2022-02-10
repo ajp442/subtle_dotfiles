@@ -21,9 +21,19 @@
 \usepackage{fontawesome}
 \usepackage{tikz}
 \usepackage{wrapfig}
+\usepackage{twemojis}
+%\usepackage{emoji}
 %\usepackage{geometry}
 \usetikzlibrary{positioning,calc}
 \usetikzlibrary{positioning,fadings,through}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[upright]{fourier}
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tkz-kiviat,numprint,fullpage} 
+\usepackage{pgfplotstable} 
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{arrows}
 
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}

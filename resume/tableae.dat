@@ -1,0 +1,11 @@
+%tableae.dat
+column1							column2	column3 
+Reliability						3	3.25
+Usability						2	4.5
+%{Application Architecture}				3.5	4
+%{Version Control}					3.25	3.5
+%Timeliness						1	4
+Efficiency						1.5	2
+%\twemoji{skier} skiing					2.5	3.25
+%skiing {\twemoji{man climbing: medium skin tone}}	2.5	3.25
+%\twemoji{man climbing: medium skin tone} climbing	2.5	3.5 

@@ -30,6 +30,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[upright]{fourier}
 %\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{pgf-pie}   
 \usepackage{tkz-kiviat,numprint,fullpage} 
 \usepackage{pgfplotstable} 
 \pgfplotsset{compat=1.16}
@@ -245,7 +246,7 @@
 %----------------------------------------------------------------------------------------
 
 %\RequirePackage[left=0.1cm,top=0.0cm,right=0.1cm,bottom=0.1cm,nohead,nofoot]{geometry}
-\RequirePackage[left=\tabcolsep,top=0.0cm,right=\tabcolsep,bottom=0.1cm,nohead,nofoot]{geometry}
+\RequirePackage[left=\tabcolsep,top=0.0cm,right=\tabcolsep,bottom=\tabcolsep,nohead,nofoot]{geometry}
 %\RequirePackage[left=7.6cm,top=0.1cm,right=1cm,bottom=0.2cm,nohead,nofoot]{geometry} 
 
 \RequirePackage{hyperref}

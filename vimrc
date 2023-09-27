@@ -48,11 +48,14 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 " A Vim Plugin for latex
 Plug 'lervag/vimtex'
 
+" https://github.com/sirtaj/vim-openscad.git
+Plug 'sirtaj/vim-openscad'
+
 
 "maybe keep
-"https://github.com/davidhalter/jedi-vim
-"Plug 'davidhalter/jedi-vim'   " jedi for python
-
+"https://github.com/davidh 
+"Python autocomplete.
+Plug 'davidhalter/jedi-vim'
 
 " Need this for compatability with tmux integration.
 "https://github.com/christoomey/vim-tmux-navigator
@@ -74,6 +77,10 @@ Plug 'dense-analysis/ale'
 
 "https://github.com/dhruvasagar/vim-table-mode
 Plug 'dhruvasagar/vim-table-mode'
+
+"https://github.com/hotwatermorning/auto-git-diff
+" Show git diff for Git Interactive Rebase
+Plug 'hotwatermorning/auto-git-diff'
 
 call plug#end()
 
@@ -231,7 +238,7 @@ set syntax=cpp.doxygen
 set fileformat=unix
 
 "Change the default colorscheme.
-colorscheme murphy
+colorscheme default
 
 augroup commentarySettings
     autocmd FileType c,cpp setlocal commentstring=//\ %s
@@ -274,8 +281,15 @@ autocmd BufNewFile,BufRead,BufReadPost *.qml set filetype=javascript
 let g:ale_fixers = {
 \   'python':   ['isort', 'black'],
 \   'sh':       ['shfmt'],
-\   'xml':      ['xmllint'],
 \}
+
+" let g:ale_fixers = {
+" \   'python':   ['isort', 'black'],
+" \   'sh':       ['shfmt'],
+" \   'xml':      ['xmllint'],
+" \}
+
+" \   'cmake':    ['cmakeformat'],
 
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
@@ -290,14 +304,22 @@ let g:ale_fix_on_save = 1
 " \   'tex':      ['latexindent'],
 " \}
 "
-let g:ale_linters = {
-\   'python':   ['pyls'],
-\}
+" let g:ale_linters = {
+" \   'python':   ['pyls'],
+" \   'cmake':   ['cmake-lint'],
+" \}
 
 " let g:ale_linters = {
 " \   'python':   ['pydocstyle', 'pylint', 'pyls'],
 " \   'tex':      ['chktex'],
 " \   'cpp':      ['clangd'],
+" \}
+
+" let g:ale_linters = {
+" \   'python':   ['pydocstyle', 'pylint', 'pyls'],
+" \   'tex':      ['chktex'],
+" \   'cpp':      ['clangd'],
+" \   'cmake':    ['cmake_lint'],
 " \}
 
 "//////////////////////////////////////////////////////////////////////////////
@@ -339,10 +361,10 @@ map <F5> :tabnew $MYVIMRC<CR>
 
 
 " like above, I don't really use this.
-"nmap <silent> <F6> <Plug>MarkdownPreview        " for normal mode
-"imap <silent> <F6> <Plug>MarkdownPreview        " for insert mode
-"nmap <silent> <S-F6> <Plug>StopMarkdownPreview    " for normal mode
-"imap <silent> <S-F6> <Plug>StopMarkdownPreview    " for insert mode
+nmap <silent> <F6> <Plug>MarkdownPreview        " for normal mode
+imap <silent> <F6> <Plug>MarkdownPreview        " for insert mode
+nmap <silent> <S-F6> <Plug>StopMarkdownPreview    " for normal mode
+imap <silent> <S-F6> <Plug>StopMarkdownPreview    " for insert mode
 
 " Toggle spell checking with <F7>
 nn <F7> :setlocal spell! spell?<CR>
@@ -376,7 +398,8 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 
 " Copy visual selection to clipboard.
-vnoremap <C-y> :'<,'>:w !xclip -selection clipboard<CR><CR>
+vnoremap <C-y> :w !xclip -selection clipboard<CR><CR>
+"vnoremap <C-y> :'<,'>:w !xclip -selection clipboard<CR><CR>
 
 " reselect visual block after indent
 vnoremap < <gv

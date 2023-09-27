@@ -32,6 +32,7 @@ fish_vi_key_bindings
 source ~/.config/gitlint/gitlintrc.fish
 
 set fish_prompt_pwd_dir_length 0
+set __fish_git_prompt_use_informative_chars yes
 
 set -x FORGIT_COPY_CMD 'xclip -selection clipboard'
 set -x FORGIT_LOG_GRAPH_ENABLE true
@@ -46,3 +47,5 @@ set -x FORGIT_LOG_GRAPH_ENABLE true
 # 	source ~/.config/fish/custom/git_fzf.fish
 # 	git_fzf_key_bindings
 # end
+#set -x PATH "/home/ajp/swdev/bitbake-docker:/home/ajp/repos/git-fuzzy/bin:$PATH"
+#set -x PATH "/home/ajp/bitbakestuff/bitbake-docker:/home/ajp/repos/git-fuzzy/bin:$PATH"

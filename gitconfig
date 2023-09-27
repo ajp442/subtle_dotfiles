@@ -7,8 +7,8 @@
     eol = lf
     autocrlf = input
     #pager = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-    #pager = delta
-    pager = bash -c 'delta --side-by-side --width ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
+    pager = delta
+    #pager = bash -c 'delta --side-by-side --width ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
     excludesFile = ~/.gitignore
 [interactive]
     diffFilter = delta --color-only
@@ -19,8 +19,8 @@
     ; features = collared-trogon
     ; features = tangara-chilensis
     ; features = villsau
-    features = woolly-mammoth ; favorite so far
-    ; features = calochortus-lyallii ; good as well
+    ; features = woolly-mammoth ; favorite so far
+    features = calochortus-lyallii ; good as well
     ; features = mantis-shrimp
     ; --- Light themes ---
     ; features = coracias-caudatus
@@ -65,11 +65,15 @@
     path = .gitconfig-work
 [cola]
 	spellcheck = true
-[blame]
-	ignoreRevsFile = .git-blame-ignore-revs
-
-	# Mark any lines that have had a commit skipped using --ignore-rev with a `?`
-	markIgnoredLines = true
-
-	# Mark any lines that were added in a skipped commit and can not be attributed with a `*`
-	markUnblamableLines = true
+	theme = flat-dark-green
+	icontheme = dark
+#[blame]
+#    ignoreRevsFile = .git-blame-ignore-revs
+#
+## Mark any lines that have had a commit skipped using --ignore-rev with a `?`
+#    markIgnoredLines = true
+#
+## Mark any lines that were added in a skipped commit and can not be attributed with a `*`
+#    markUnblamableLines = true
+[color]
+	ui = auto

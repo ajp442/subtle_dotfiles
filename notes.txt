@@ -11,11 +11,12 @@ https://github.com/jethrokuan/fzf
 ~/.config/fish/config.fish
 
 
-#To make fish your default shell:
-#Add the line /usr/local/bin/fish to /etc/shells
+# To make fish your default shell:
+# Add the line /usr/local/bin/fish to /etc/shells
 echo /usr/local/bin/fish | sudo tee -a /etc/shells
-#Change your default shell with 
+# Change your default shell with 
 chsh -s /usr/local/bin/fish
+# Need to log out and back in again.
 
 # apply gitlint patches
 cd ~/swdev/gitlint
@@ -32,6 +33,17 @@ ln -s ~/repos/subtle_dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/repos/subtle_dotfiles/gitconfig ~/.gitconfig
 ln -s ~/repos/subtle_dotfiles/gitconfig-work ~/.gitconfig-work
 ln -s ~/repos/subtle_dotfiles/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
+ln -s ~/repos/subtle_dotfiles/.bashrc ~/
+
+#==============================================================================
+# symlink bin stuff
+#==============================================================================
+mkdir -p ~/.local/bin
+ln -s ~/swdev/tools-and-docs/translations/examine_translations.py ~/.local/bin/
+ln -s ~/swdev/tools-and-docs/translations/count_translations.py ~/.local/bin/
+ln -s ~/swdev/tools-and-docs/translations/fix_attributes.py ~/.local/bin/
+ln -s ~/swdev/tools-and-docs/translations/repeat_statistics.py ~/.local/bin/
+ln -s ~/swdev/tools-and-docs/translations/longest_language.py ~/.local/bin/
 
 
 #==============================================================================

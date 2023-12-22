@@ -19,8 +19,8 @@
     ; features = collared-trogon
     ; features = tangara-chilensis
     ; features = villsau
-    ; features = woolly-mammoth ; favorite so far
-    features = calochortus-lyallii ; good as well
+      features = woolly-mammoth ; favorite so far
+    ; features = calochortus-lyallii ; good as well
     ; features = mantis-shrimp
     ; --- Light themes ---
     ; features = coracias-caudatus
@@ -62,7 +62,7 @@
     recurse = true
 
 [includeIf "gitdir:~/swdev/"]
-    path = .gitconfig-work
+    path = ~/.config/git/gitconfig-work
 [cola]
 	spellcheck = true
 	theme = flat-dark-green

@@ -28,10 +28,11 @@ cd ~/swdev/gitlint
 pip install -e .
 
 ln -s ~/repos/subtle_dotfiles/vimrc ~/.vim/vimrc
+ln -s ~/repos/subtle_dotfiles/init.vim ~/.config/nvim/init.vim
 ln -s ~/repos/subtle_dotfiles/config.fish ~/.config/fish/config.fish
-ln -s ~/repos/subtle_dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/repos/subtle_dotfiles/gitconfig ~/.gitconfig
-ln -s ~/repos/subtle_dotfiles/gitconfig-work ~/.gitconfig-work
+ln -s ~/repos/subtle_dotfiles/tmux.conf ~/.config/tmux/tmux.conf
+ln -s ~/repos/subtle_dotfiles/gitconfig ~/.config/git/config
+ln -s ~/repos/subtle_dotfiles/gitconfig-work ~/.config/git/gitconfig-work
 ln -s ~/repos/subtle_dotfiles/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 ln -s ~/repos/subtle_dotfiles/.bashrc ~/
 

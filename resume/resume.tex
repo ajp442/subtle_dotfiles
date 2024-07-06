@@ -18,10 +18,6 @@
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
-%\usepackage{csquotes}
-%\usepackage{amsmath}
-%\usepackage{tcolorbox}
-%\usepackage{mdframed}
 
 \documentclass[letterpaper]{ajp} % a4paper for A4
 
@@ -55,14 +51,6 @@
 
 \aboutme{I'm an outdoor enthusiast.} % To have no About Me section, just remove all the text and leave \aboutme{}
 
-%----------------------------------------------------------------------------------------
-%	 SKILLS
-%----------------------------------------------------------------------------------------
-
-% Skill bar section, each skill must have a value between 0 an 6 (float)
-\skills{{Java/2},{C++/5.8},{bash/3},{python/4.3},{javascript/4}}
-
-
 
 %----------------------------------------------------------------------------------------
 \mdfdefinestyle{MyFrame}{%
@@ -71,14 +59,9 @@
     roundcorner=10pt
 }%
 
-%\makeprofile% Print the sidebar
 
 % Background rectangle that color fades.
-  % \begin{tikzpicture}[remember picture,overlay]
-  %   \node [rectangle, top color=maingray, bottom color=white, anchor=north, minimum width=\paperwidth, minimum height=8.5cm] (box) at ($(current page.north)+(0mm, 1mm)$){};
-  % \end{tikzpicture}
   \begin{tikzpicture}[remember picture,overlay]
-    %\node [rectangle, top color=maingray, bottom color=white, anchor=north, minimum width=\paperwidth, minimum height=\paperheight] (box) at ($(current page.north)+(0mm, 1mm)$){};
     \node [rectangle, top color=white, bottom color=maingray, anchor=north, minimum width=\paperwidth, minimum height=\paperheight] (box) at ($(current page.north)+(0mm, 0mm)$){};
   \end{tikzpicture}
 
@@ -106,19 +89,7 @@
 		\clip (-70, -110) circle (200);
 		\node[anchor=center] at (0,0) {\includegraphics[width=\imagewidth]{\profilepic}};
 	\end{tikzpicture}
-%\vspace{10pt}
 \end{minipage}
-% \noindent\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}ccc}
-% \faBirthdayCake{} 11/24/1991
-% &\faEnvelope{} ajp442@gmail.com
-% &\faMapMarker{} round rock, 78665 tx
-% &\faPhone{} +1 612.597.6224
-% \end{tabular*}
-%\faBirthdayCake{} 11/24/1991 \faEnvelope{} ajp442@gmail.com \faMapMarker{} Round Rock, 78665 TX \faPhone{} +1 612.597.6224
-% \faBirthdayCake{} 11/24/1991\\
-% \faEnvelope{} ajp442@gmail.com\\
-% \faMapMarker{} Round Rock, 78665 TX\\
-% \faPhone{} +1 612.597.6224
 
 
 \begin{multicols}{2}

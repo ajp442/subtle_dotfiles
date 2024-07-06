@@ -7,34 +7,10 @@
 %----------------------------------------------------------------------------------------
 
 \RequirePackage[sfdefault]{ClearSans}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{tikz}
-\RequirePackage{xcolor}
-\RequirePackage[absolute,overlay]{textpos}
-\RequirePackage{ragged2e}
-\RequirePackage{etoolbox}
-\RequirePackage{ifmtarg}
-\RequirePackage{ifthen}
-\RequirePackage{pgffor}
-\RequirePackage{marvosym}
-\RequirePackage{parskip}
-\usepackage{fontawesome}
-\usepackage{tikz}
-\usepackage{wrapfig}
-\usepackage{twemojis}
-%\usepackage{emoji}
-%\usepackage{geometry}
+\RequirePackage{parskip} % Need this to make it look nice.
+\usepackage{fontawesome} % This is for the birthday cake icons and such.
+\usepackage{twemojis} % This is for the twitter-style emojis.
 \usetikzlibrary{positioning,calc}
-\usetikzlibrary{positioning,fadings,through}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[upright]{fourier}
-%\usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{pgf-pie}   
-\usepackage{tkz-kiviat,numprint,fullpage} 
-\usepackage{pgfplotstable} 
-\pgfplotsset{compat=1.16}
-\usetikzlibrary{arrows}
 
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}

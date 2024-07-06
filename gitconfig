@@ -39,6 +39,8 @@
     help = cache --timeout=60000
 [alias]
     glog="log --graph --pretty=format:'%Cred%h %Cgreen%cd %C(yellow)%an %C(cyan)(%ad)%Creset  %Creset%s %C(auto)%d' --abbrev-commit --date=short"
+    csv="log --pretty=format:'%h,%cd,%an,%ad' --abbrev-commit --date=short"
+    msg="log --pretty=format:'%s %d' --abbrev-commit"
     #lg    = log --color --graph --pretty=format:'%C(auto)%h%d %s %C(black)%C(bold)%an, %cr' --abbrev-commit --decorate
     #ll    = log --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(bold blue) <%an>' --decorate --numstat --abbrev-commit
     #rf    = reflog --pretty=format:'%C(auto)%h %gd %gs%C(black)%C(bold), %cr'

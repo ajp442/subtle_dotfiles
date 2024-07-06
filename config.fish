@@ -8,7 +8,7 @@ set -x FZF_DEFAULT_OPTS --info=inline \
 
 # Don't print out anything for the greeting.
 function fish_greeting
-    cowsay (echo -e "-b\n-d\n-g\n-p\n-s\n-t\n-w\n-y" | shuf -n1) (fortune)
+#    cowsay (echo -e "-b\n-d\n-g\n-p\n-s\n-t\n-w\n-y" | shuf -n1) (fortune)
 end
 
 # Need how to figure out the best way to add $HOME/.local/bin to PATH

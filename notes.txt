@@ -138,3 +138,44 @@ Here is a link on how to run perf for python,
 https://docs.python.org/3/howto/perf_profiling.html
 
 I didn't have much luck with being able to see what python functions were being called.
+
+
+
+#==============================================================================
+# ROS related snippets
+#==============================================================================
+
+#------------------------------------------------------------------------------
+# Qt Creator additional startup commands
+#------------------------------------------------------------------------------
+set index-cache directory ~/.cache/gdb
+
+set auto-load safe-path /
+
+set solib-search-path %{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/ui:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/ui/tractors_carts/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/be:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/can/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/can/isobus/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/demo/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/dispatchers/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/ui/jobConfirmation/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/serial:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fishspear/plugins/earlybird/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/psf/atd-ms-supervisor/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/psf/iso_ecu_host/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/psf/ipc-proxy/:%{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/psf/Logger/
+
+handle SIGILL pass nostop noprint
+
+set index-cache directory ~/.cache/gdb
+#------------------------------------------------------------------------------
+
+sqlite3 /usr/bin/raven/databases/my.db.sqlite "SELECT absolutePath FROM files WHERE displayName LIKE 'AgSync-3610394';"
+
+mono ~/swdev/radviewer/RadViewer/bin/Debug/RadViewer.exe ./\{5aff1568-1f66-4692-ad28-a67ae8caff52\}/\{5aff1568-1f66-4692-ad28-a67ae8caff52\}.jdf
+
+xmllint --noout --schema /home/ajp/swdev/xml-handler/ISOLibraryGeneration/ISO11783_TaskFile_V4-2.xsd ~/jeff_TASKDATA.XML
+
+ps -ef | grep -e "devprog" -e "jetstream" -e "softwarelauncher" -e "nx_farm_display_service"
+
+mkdir -p /usr/bin/raven/userFiles/usbService
+
+rsync -Prltvc --info=progress2 --inplace --partial /tmp/QtCreator-eMvDhp/staging-ccee0d930d548cb4/ root@192.168.0.10:/
+
+x11vnc --forever --shared -noxdamage -ncache 1 &
+
+.headers on
+.mode column
+
+rvn@)%EIIO
+
+sqlite3 /usr/bin/raven/databases/my.db.sqlite "UPDATE startupUnlock SET job_sec_expiration = 2000000000;"

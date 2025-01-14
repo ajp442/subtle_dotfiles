@@ -80,3 +80,61 @@ gitlint install-hook
 source ~/.config/gitlint/gitlintrc.fish
 
 needs to be added to ~/.config/fish/config.fish
+
+
+
+
+
+
+
+#==============================================================================
+# Attempting to run perf on python script
+#==============================================================================
+`perf record -F 9999 -g -o perf.data python ~/swdev/tools-and-docs/debug/record_dumps.py`
+
+```
+Error:
+Access to performance monitoring and observability operations is limited.
+Consider adjusting /proc/sys/kernel/perf_event_paranoid setting to open
+access to performance monitoring and observability operations for processes
+without CAP_PERFMON, CAP_SYS_PTRACE or CAP_SYS_ADMIN Linux capability.
+More information can be found at 'Perf events and tool security' document:
+https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html
+perf_event_paranoid setting is 4:
+  -1: Allow use of (almost) all events by all users
+      Ignore mlock limit after perf_event_mlock_kb without CAP_IPC_LOCK
+>= 0: Disallow raw and ftrace function tracepoint access
+>= 1: Disallow CPU event access
+>= 2: Disallow kernel profiling
+To make the adjusted perf_event_paranoid setting permanent preserve it
+in /etc/sysctl.conf (e.g. kernel.perf_event_paranoid = <setting>)
+```
+
+`sudo sysctl kernel.perf_event_paranoid=-1`
+
+Fixed that error, now we get a different warning
+
+```
+WARNING: Kernel address maps (/proc/{kallsyms,modules}) are restricted,
+check /proc/sys/kernel/kptr_restrict and /proc/sys/kernel/perf_event_paranoid.
+
+Samples in kernel functions may not be resolved if a suitable vmlinux
+file is not found in the buildid cache or in the vmlinux path.
+
+Samples in kernel modules won't be resolved at all.
+
+If some relocation was applied (e.g. kexec) symbols may be misresolved
+even with a suitable vmlinux or kallsyms file.
+
+Couldn't record kernel reference relocation symbol
+Symbol resolution may be skewed if relocation was used (e.g. kexec).
+Check /proc/kallsyms permission or run as root.
+```
+
+To fix this warning I ran:
+`sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"`
+
+Here is a link on how to run perf for python,
+https://docs.python.org/3/howto/perf_profiling.html
+
+I didn't have much luck with being able to see what python functions were being called.

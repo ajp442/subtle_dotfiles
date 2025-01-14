@@ -4,6 +4,7 @@ set -x FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 set -x FZF_DEFAULT_OPTS --info=inline \
 --layout=reverse \
 "--preview 'bat --style changes --color=always --line-range :60 {}'" \
+--preview-window hidden \
 --bind='F2:toggle-preview'
 
 # Don't print out anything for the greeting.

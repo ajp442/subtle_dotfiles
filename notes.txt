@@ -27,8 +27,7 @@ git am ~/repos/subtle_dotfiles/GITLINT_CONFIG_env_var.patch
 cd ~/swdev/gitlint
 pip install -e .
 
-ln -s ~/repos/subtle_dotfiles/vimrc ~/.vim/vimrc
-ln -s ~/repos/subtle_dotfiles/init.vim ~/.config/nvim/init.vim
+ln -s ~/repos/subtle_dotfiles/vimrc ~/.config/nvim/init.vim
 ln -s ~/repos/subtle_dotfiles/config.fish ~/.config/fish/config.fish
 ln -s ~/repos/subtle_dotfiles/tmux.conf ~/.config/tmux/tmux.conf
 ln -s ~/repos/subtle_dotfiles/gitconfig ~/.config/git/config
@@ -82,7 +81,13 @@ source ~/.config/gitlint/gitlintrc.fish
 needs to be added to ~/.config/fish/config.fish
 
 
+#==============================================================================
+# Random Stuff
+#==============================================================================
 
+Password on old pc
+1Raven!
+Fourteen14!raven
 
 
 

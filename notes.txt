@@ -50,35 +50,45 @@ ln -s ~/swdev/tools-and-docs/translations/longest_language.py ~/.local/bin/
 # Gitlint setup
 #==============================================================================
 
-[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ mkdir -p ~/.config/gitlint
-[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ cp ~/swdev/ci_gitlint/gitlint/.gitlint ~/.config/gitlint/gitlint.ini
-[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ #cp ~/swdev/ci_gitlint/gitlint/rules/body_max_line_length_with_exceptions.py ~/.config/gitlint/gitlint-rules
-[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ mkdir ~/.config/gitlint/gitlint-rules
-[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ cp ~/swdev/ci_gitlint/gitlint/rules/body_max_line_length_with_exceptions.py ~/.config/gitlint/gitlint-rules
-[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ cp ~/swdev/ci_gitlint/gitlint/rules/title_imperative_mood.py ~/.config/gitlint/gitlint-rules
-[I] ~/swdev/ci_gitlint/gitlint (master|✔) $ cp ~/swdev/subtle_dotfiles/gitlintrc.fish ~/.config/gitlint/gitlintrc.fish
-
-https://stackoverflow.com/questions/21903805/how-to-download-a-single-commit-diff-from-github
-Go to the commit you want to use as a patch, and at `.patch` to the end of the url.
-
-https://github.com/jorisroovers/gitlint/commit/57bc613c06b49df7e32493d37084bc4bf830d33e.patch
-Save as gitlint_msgfile_kept_after_edit.patch
-
-https://github.com/jorisroovers/gitlint/commit/02c0226133d9fe103bbb5bdec70fc17094c55fb3.patch
-Save as GITLINT_CONFIG_env_var.patch
-
-git am ~/swdev/subtle_dotfiles/GITLINT_CONFIG_env_var.patch
-git am ~/swdev/subtle_dotfiles/gitlint_msgfile_kept_after_edit.patch
-
+#------------------------------------------------------------------------------
+# Install gitlint
+#------------------------------------------------------------------------------
 git clone https://github.com/jorisroovers/gitlint.git
 
+# First install dependencies
+cd gitlint/gitlint-core
+pip install -e .
+
+# Install gitlint
+cd ..
 pip3 install -e .
 
+#------------------------------------------------------------------------------
+# Configing gitlint
+#------------------------------------------------------------------------------
+cd ~/swdev
+git clone git@source.raven.engineering:atd/ci/gitlint.git
+
+# symlink gitllint.ini
+mkdir -p ~/.config/gitlint
+ln -s ~/swdev/ci_gitlint/gitlint/.gitlint ~/.config/gitlint/gitlint.ini
+
+# Add extra rules to the right spot
+mkdir ~/.config/gitlint/gitlint-rules
+ln -s ~/swdev/ci_gitlint/gitlint/rules/body_max_line_length_with_exceptions.py ~/.config/gitlint/gitlint-rules
+ln -s ~/swdev/ci_gitlint/gitlint/rules/title_imperative_mood.py ~/.config/gitlint/gitlint-rules
+
+# Special thing for the fish shell to set the right environment variables.
+ln -s ~/swdev/subtle_dotfiles/gitlintrc.fish ~/.config/gitlint/gitlintrc.fish
+
+# Finally, install gitlint as a git `commit-msg` hook.
+# https://jorisroovers.com/gitlint/dev/commit_hooks/
+cd <path/to/git/repo>
 gitlint install-hook
 
+# This is already in config.fish, but making not of it here just in-case.
 source ~/.config/gitlint/gitlintrc.fish
-
-needs to be added to ~/.config/fish/config.fish
+# Add the above line to ~/.config/fish/config.fish
 
 
 #==============================================================================

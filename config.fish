@@ -42,6 +42,11 @@ set __fish_git_prompt_use_informative_chars yes
 
 set -x FORGIT_COPY_CMD 'xclip -selection clipboard'
 set -x FORGIT_LOG_GRAPH_ENABLE true
+
+# Have a python venv that gets activated automatically.
+# But only if it is not already activated.
+test -z "$VIRTUAL_ENV" && source "$HOME/.venv/default/bin/activate.fish"
+
 # This is from:
 # https://github.com/bigH/git-fuzzy
 # I'm not a huge fan so far, I might remove it.

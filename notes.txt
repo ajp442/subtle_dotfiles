@@ -154,7 +154,24 @@ https://docs.python.org/3/howto/perf_profiling.html
 
 I didn't have much luck with being able to see what python functions were being called.
 
+#==============================================================================
+# RadViewer.exe
+#==============================================================================
+#Installed a bunch of wine packages, not sure which ones are actually needed
+Sudo apt install wine
+Sudo apt install winetricks
+sudo apt install mono-complete
+sudo apt install mono
+sudo apt install wine32-preloader
+sudo apt install winetricks
+sudo apt install wine32:i386
 
+# Ran `winetricks` added a new 32bit prefix
+# Went here https://dl.winehq.org/wine/wine-mono/ and downloaded the latest .msi (9.4.0 at the time)
+# Ran `winetricks` selected to run the "uninstaller" then installed the .msi I just downloaded
+# From `winetricks` select to "Run an arbitrary executable (.exe/.msi/.msu)
+# I think it is the same as doing:
+wine RadViewer.exe
 
 #==============================================================================
 # ROS related snippets

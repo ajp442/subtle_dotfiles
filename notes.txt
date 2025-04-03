@@ -172,6 +172,11 @@ set solib-search-path %{ActiveProject:BuildConfig:Path}/distro/usr/bin/raven/fis
 handle SIGILL pass nostop noprint
 
 set index-cache directory ~/.cache/gdb
+
+# deploy over reverse ssh
+# need the `-e 'ssh -p 2222'` piece, e.g. :
+rsync -rltvc --inplace -e 'ssh -p 2222'  /tmp/QtCreator-RfZPfn/staging-187719c5a3e15103/usr/bin/raven/ root@localhost:/
+
 #------------------------------------------------------------------------------
 
 sqlite3 /usr/bin/raven/databases/my.db.sqlite "SELECT absolutePath FROM files WHERE displayName LIKE 'AgSync-3610394';"

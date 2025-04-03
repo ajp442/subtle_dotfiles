@@ -54,11 +54,6 @@ set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
 syntax enable
 filetype plugin indent on
 
-augroup commentarySettings
-    autocmd FileType c,cpp setlocal commentstring=//\ %s
-augroup END
-
-let g:python3_host_prog = '/home/ajp/.venv/3.12kitchensink/bin/python'
 
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {

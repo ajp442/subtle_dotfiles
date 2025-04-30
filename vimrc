@@ -89,7 +89,7 @@ map <F8> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
 "Temporarily switch to “paste mode”. Paste while in insert mode.
 set pastetoggle=<F2>
 
-colorscheme darkblue
+colorscheme default
 " Cycle forward through colorschemes with <F9> and cycle through them backwards with <S-F9>
 noremap <silent> <F9> :call ChangeColor(1)<CR>
 " set <S-F9>=[20;2~

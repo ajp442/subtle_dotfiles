@@ -45,7 +45,7 @@ set -x FORGIT_LOG_GRAPH_ENABLE true
 
 # Have a python venv that gets activated automatically.
 # But only if it is not already activated.
-test -z "$VIRTUAL_ENV" && source "$HOME/.venv/default/bin/activate.fish"
+#test -z "$VIRTUAL_ENV" && source "$HOME/.venv/default/bin/activate.fish"
 
 # This is from:
 # https://github.com/bigH/git-fuzzy

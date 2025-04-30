@@ -174,6 +174,35 @@ sudo apt install wine32:i386
 wine RadViewer.exe
 
 #==============================================================================
+# bitbake
+#==============================================================================
+PREMIRRORS
+
+# Not working
+git://github.com/c-ares/c-ares.git
+# Working
+https://github.com/c-ares/c-ares.git
+# Recipe
+SRC_URI = "\
+    git://github.com/c-ares/c-ares.git;branch=main \
+    file://cmake-install-libcares.pc.patch \
+"
+/home/andrewpierson/other_bitbake_stuff/sources/meta-raven-yocto/daisy/meta-daisy-backports/recipes-support/c-ares/c-ares_1.15.0.bb
+
+# Not working
+git://git.videolan.org/x264.git
+# Working
+https://code.videolan.org/videolan/x264.git
+# Recipe
+/home/andrewpierson/other_bitbake_stuff/sources/poky/meta/recipes-multimedia/x264/x264_git.bb
+
+# Not working
+gitsm://git@source.raven.engineering/atd/fishspear.git
+# Working
+# Recipe
+/home/andrewpierson/other_bitbake_stuff/sources/meta-raven/recipes-viper4/fishspear/fishspear_1.1.b
+
+#==============================================================================
 # ROS related snippets
 #==============================================================================
 

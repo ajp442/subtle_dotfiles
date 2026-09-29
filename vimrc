@@ -45,6 +45,13 @@ Plug 'davidhalter/jedi-vim'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 
+"Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
+"https://github.com/knubie/vim-kitty-navigator
+"Plug 'knubie/vim-kitty-navigator'
+
+set title
+set titlestring=Vim\ %f
+
 call plug#end()
 
 set ignorecase smartcase
